@@ -1,4 +1,8 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// (1) http://tools.android.com/tech-docs/new-build-system/user-guide
+
+// Configures the code driving the build.  This only affects the code running the build,
+// not the project. The project itself needs
+// to declare its own repositories and dependencies. (1)
 
 buildscript {
     repositories {

@@ -1,3 +1,5 @@
+// (1) http://tools.android.com/tech-docs/new-build-system/user-guide
+
 apply plugin: 'com.android.application'
 
 android {
@@ -6,10 +8,15 @@ android {
 
     defaultConfig {
         applicationId "com.fyrecloud.andrino"
-        minSdkVersion 10
-        targetSdkVersion 22
+
+        // Minimum API required...
+        // 7 appcompat-v7
+        // 8 android.support.test.runner
+        minSdkVersion 8
+        targetSdkVersion 8
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -21,5 +28,10 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0' // Need this for ActionBar
+
+    androidTestCompile 'com.android.support.test:runner:0.3'
+    //androidTestCompile 'com.android.support.test:rules:0.3'
+
+
 }
