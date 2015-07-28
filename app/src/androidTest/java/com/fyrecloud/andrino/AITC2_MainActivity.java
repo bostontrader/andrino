@@ -1,7 +1,11 @@
 package com.fyrecloud.andrino;
 
-import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainActivity> {
 
@@ -16,7 +20,8 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
 
     public void test() {
 
-        MainActivity mActivity = getActivity();
+        getActivity();
+        onView(withId(R.id.thePrompt)).check(matches(isDisplayed()));
         assertTrue(true);
     }
 
