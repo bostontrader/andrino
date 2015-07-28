@@ -5,21 +5,22 @@
 	style="@style/Layout"
 	android:orientation="vertical"
 	android:padding="5sp"
-		>
+	>
 
 	<EditText
+		android:gravity="top"
+		android:hint="@string/enter_javascript"
 		android:id="@+id/theText"
-		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="2"
-		android:gravity="top"
+		android:layout_width="fill_parent"
 	/>
 
 	<Button
 		android:id="@+id/btnSave"
-		android:text="@string/submit"
-		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:text="@string/submit"
 		style="@style/Text"
 	/>
 
