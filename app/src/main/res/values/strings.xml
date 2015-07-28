@@ -4,14 +4,14 @@
 
 	<!-- Alpha by name -->
     <string name="andrino">andrino</string>
-    <string name="edit">edit</string>
+    <string name="full_screen_editor">full screen editor</string>
     <string name="settings">settings</string>
+	<string name="submit">submit</string>
 
 <!--
 	<string name="about">About</string>
 	<string name="fyrecloud.com">fyrecloud.com/andrino</string>
 	<string name="send_email">Send Email</string>
-	<string name="submit">Submit</string>
 	-->
 
 </resources>
