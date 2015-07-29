@@ -32,7 +32,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0' // Need this for ActionBar
-
+    compile 'org.mozilla:rhino:1.7.7'
     androidTestCompile 'com.android.support.test:runner:0.3'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
+    testCompile 'junit:junit:4.12'
 }

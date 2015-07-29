@@ -1,10 +1,13 @@
 #Andrino
 
-... is an interactive Javascript interpreter. One reason that Johnny can't program is
- because the kids today cannot find a simple interactive programming environment to get started
- with. **Andrino** is my humble attempt to address this problem. It is a great way to practice
- beginning programming with Javascript. Never again will your kids need to fight for nought on
- long road trips. Now you can give them something worthy of conflict.
+... is an interactive Javascript interpreter. It functions by embedding [Mozilla's Rhino]
+(https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino) implementation of Javascript.
+
+One reason that Johnny can't program is
+because the kids today cannot find a simple interactive programming environment to get started
+with. **Andrino** is my humble attempt to address this problem. It is a great way to practice
+beginning programming with Javascript. Never again will your kids need to fight for nought on
+long road trips. Now you can give them something worthy of conflict.
 
 ##RTFM
 

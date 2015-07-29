@@ -22,6 +22,9 @@ import android.view.View.OnClickListener;
 //import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
 //import android.widget.ListView;
 //import android.widget.TextView;
 //import android.widget.Toast;
@@ -79,15 +82,24 @@ public class MainActivity extends Activity {
 		ia = new InteractionAdapter(this);
 		interactions = new Vector<Interaction>();
 		ia.DI(interactions);
-		lvInteractions.setAdapter(ia);
+		lvInteractions.setAdapter(ia);*/
 
-		cx = org.mozilla.javascript.Context.enter();
-		cx.setOptimizationLevel(-1);
-		scope = cx.initStandardObjects();
+		Context cx = org.mozilla.javascript.Context.enter();
+		//cx.setOptimizationLevel(-1);
+		Scriptable scope = cx.initStandardObjects();
 
+		Object result;
+		//String retString = "";
+		//try {
+		String newline = "5+10";
+		result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
+		//retString = result.toString();
+		//}
+		//catch(Throwable th) {
+		//retString = th.getLocalizedMessage();
+		//}
 
-
-		EditText et = (EditText) this.findViewById(R.id.thePrompt);
+		/*EditText et = (EditText) this.findViewById(R.id.thePrompt);
 		et.setText("");
 		et.setOnEditorActionListener(
 			new OnEditorActionListener() {
@@ -232,7 +244,7 @@ public class MainActivity extends Activity {
 
     //private String rhino(String newline) {
 
-    //Object result = null;
+    //Object result;
     //String retString = "";
     //try {
     //result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
