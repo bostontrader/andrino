@@ -24,11 +24,19 @@
 	/>
 
 	<Button
+		android:id="@+id/btnSubmit"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/submit"
+        style="@style/Text"
+	/>
+
+	<Button
 		android:id="@+id/btnFullScreenEditor"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/full_screen_editor"
-		style="@style/Text"
+        style="@style/Text"
 	/>
 
 </LinearLayout>

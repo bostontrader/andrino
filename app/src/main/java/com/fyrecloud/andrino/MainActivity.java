@@ -84,15 +84,15 @@ public class MainActivity extends Activity {
 		ia.DI(interactions);
 		lvInteractions.setAdapter(ia);*/
 
-		Context cx = org.mozilla.javascript.Context.enter();
+		//Context cx = org.mozilla.javascript.Context.enter();
 		//cx.setOptimizationLevel(-1);
-		Scriptable scope = cx.initStandardObjects();
+		//Scriptable scope = cx.initStandardObjects();
 
-		Object result;
+		//Object result;
 		//String retString = "";
 		//try {
-		String newline = "5+10";
-		result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
+		//String newline = "5+10";
+		//result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
 		//retString = result.toString();
 		//}
 		//catch(Throwable th) {

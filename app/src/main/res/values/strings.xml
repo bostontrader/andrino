@@ -4,6 +4,7 @@
 
 	<!-- Alpha by name -->
     <string name="andrino">andrino</string>
+    <string name="enter">enter</string>
 	<string name="enter_javascript">enter javascript</string>
     <string name="full_screen_editor">full screen editor</string>
     <string name="settings">settings</string>

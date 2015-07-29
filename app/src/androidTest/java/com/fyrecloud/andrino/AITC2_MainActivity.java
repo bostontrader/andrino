@@ -29,11 +29,16 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
 
         Activity activity = getActivity();
 
-        // 1. thePrompt, in MainActivity and the Editor should both have
+        // 1. Initial peek.  Are the UI controls there?
+        // ThePrompt, in MainActivity and the Editor should both have
         // the same hint.
         onView(withId(R.id.thePrompt)).check(matches(isDisplayed()));
         onView(withId(R.id.thePrompt)).check(matches(withHint(R.string.enter_javascript)));
+        onView(withId(R.id.btnSubmit)).check(matches(isDisplayed()));
+        onView(withId(R.id.btnSubmit)).check(matches(withText(R.string.submit)));
         onView(withId(R.id.btnFullScreenEditor)).check(matches(isDisplayed()));
+        onView(withId(R.id.btnFullScreenEditor)).check(matches(withText(R.string.full_screen_editor)));
+
         onView(withId(R.id.btnFullScreenEditor)).perform(click());
         onView(withId(R.id.theText)).check(matches(withHint(R.string.enter_javascript)));
         pressBack();
@@ -42,7 +47,7 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
         // Did the javascript survive the trip?
         onView(withId(R.id.thePrompt)).perform(typeText(activity.getString(R.string.one_plus_two)));
         onView(withId(R.id.btnFullScreenEditor)).perform(click());
-        onView(withId(R.id.theText)).check(matches(withText(activity.getString(R.string.one_plus_two))));
+        onView(withId(R.id.theText)).check(matches(withText(R.string.one_plus_two)));
     }
 
 }
