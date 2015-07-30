@@ -1,36 +1,22 @@
 package com.fyrecloud.andrino;
 
-//import java.util.Vector;
-
-//import org.mozilla.javascript.Scriptable;
-
-
 import android.app.Activity;
-//import android.content.Context;
 import android.content.Intent;
-//import android.media.MediaPlayer;
 import android.os.Bundle;
-//import android.view.KeyEvent;
-//import android.view.LayoutInflater;
-//import android.view.Menu;
-//import android.view.MenuInflater;
-//import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-//import android.view.ViewGroup;
-//import android.widget.AdapterView;
-//import android.widget.BaseAdapter;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import org.mozilla.javascript.Context;
+//import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
-//import android.widget.ListView;
-//import android.widget.TextView;
-//import android.widget.Toast;
-//import android.widget.AdapterView.OnItemClickListener;
-//import android.widget.TextView.OnEditorActionListener;
+
+import java.util.Vector;
 
 /**
  * This Activity is the entry point to the application.
@@ -38,9 +24,10 @@ import org.mozilla.javascript.Scriptable;
  * @author Thomas Radloff  bostontrader@gmail.com
  */
 public class MainActivity extends Activity {
-    //private ListView lvInteractions;
-    //private Vector<Interaction> interactions;
-    //InteractionAdapter ia;
+
+    private ListView lvRhinoInteractions;
+    private Vector<RhinoInteraction> rhinoInteractions;
+    private RhinoInteractionAdapter ria;
 
     // We need these for Rhino
     //private org.mozilla.javascript.Context cx;
@@ -66,30 +53,8 @@ public class MainActivity extends Activity {
                     @Override
                     public void onClick(View arg0) {
                         // When clicked, submit the javascript to rhino.
-						//EditText et = (EditText) this.findViewById(R.id.thePrompt);
-						//String s1 = thePrompt.toString();
-						//String s2 = thePrompt.getText().toString();
-						//thePrompt.getText();
-						//et.setText("");
-						//et.setOnEditorActionListener(
-						//new OnEditorActionListener() {
-					    //@Override
-						//public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
-
-						// For whatever reason, each enter triggers this twice.  I only
-						// want to use it once.  This is how I pick only one
-						//if (arg2.getDownTime() == arg2.getEventTime()) {
-						// 1. First, figure out what the newly entered text is
-						//String newLine = arg0.getText().toString();
 						feedRhino(thePrompt.getText().toString());
 						thePrompt.setText("");
-						// 2. Then erase the EditText so we may use it again
-						//arg0.setText("");
-						//}
-						//return true;	// event consumed
-						//}
-						//}
-				    	//);
                     }
                 }
         );
@@ -117,30 +82,10 @@ public class MainActivity extends Activity {
             }
         );
 
-		/*ListView lvInteractions = (ListView) findViewById(R.id.theInteractions);
-		ia = new InteractionAdapter(this);
-		interactions = new Vector<Interaction>();
-		ia.DI(interactions);
-		lvInteractions.setAdapter(ia);*/
-
-		//Context cx = org.mozilla.javascript.Context.enter();
-
-		// Disable optimization lest we get the dreaded
-		// java.lang.UnsupportedOperationException: can't load this type of class file
-        // error.
-		//cx.setOptimizationLevel(-1);
-		//Scriptable scope = cx.initStandardObjects();
-
-		//Object result;
-		//String retString = "";
-		//try {
-		//String newline = "5+10";
-		//result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
-		//retString = result.toString();
-		//}
-		//catch(Throwable th) {
-		//retString = th.getLocalizedMessage();
-		//}
+ 		lvRhinoInteractions = (ListView) findViewById(R.id.theInteractions);
+        rhinoInteractions = new Vector<RhinoInteraction>();
+		ria = new RhinoInteractionAdapter(this, rhinoInteractions);
+		lvRhinoInteractions.setAdapter(ria);
 
 		/*
 
@@ -220,31 +165,31 @@ public class MainActivity extends Activity {
     	//mp.start();
 
     	// 1. Enter inputString as an interaction and update the UI
-    	//Interaction interaction = new Interaction();
-    	//interaction.theText = inputString;
-    	//interaction.fRhinoSpeaks = false;
-    	//interactions.add(interaction);
-    	//runOnUiThread(
-    	//new Runnable() {
-    	//public void run() {
-    	//ia.notifyDataSetChanged();
-    	//}
-    	//}
-    	//);
+    	RhinoInteraction rhinoInteraction = new RhinoInteraction();
+    	rhinoInteraction.theText = inputString;
+    	rhinoInteraction.fRhinoSpeaks = false;
+    	rhinoInteractions.add(rhinoInteraction);
+    	runOnUiThread(
+    	    new Runnable() {
+    	        public void run() {
+    	            ria.notifyDataSetChanged();
+    	        }
+    	    }
+    	);
 
 	    // 2. Now call Rhino
     	String rhinoResult = rhino(inputString);
-    	//interaction = new Interaction();
-    	//interaction.theText = rhinoResult;
-    	//interaction.fRhinoSpeaks = true;
-    	//interactions.add(interaction);
-    	//runOnUiThread(
-    	//new Runnable() {
-    	//public void run() {
-    	//ia.notifyDataSetChanged();
-    	//}
-    	//}
-    	//);
+    	rhinoInteraction = new RhinoInteraction();
+        rhinoInteraction.theText = rhinoResult;
+        rhinoInteraction.fRhinoSpeaks = true;
+        rhinoInteractions.add(rhinoInteraction);
+    	runOnUiThread(
+    	    new Runnable() {
+    	        public void run() {
+    	            ria.notifyDataSetChanged();
+    	        }
+    	    }
+    	);
 
     }
 
@@ -267,7 +212,7 @@ public class MainActivity extends Activity {
     private String rhino(String newline) {
 
 
-        Context cx = org.mozilla.javascript.Context.enter();
+        org.mozilla.javascript.Context cx = org.mozilla.javascript.Context.enter();
 
         // Disable optimization lest we get the dreaded
         // java.lang.UnsupportedOperationException: can't load this type of class file
@@ -285,35 +230,51 @@ public class MainActivity extends Activity {
         }
         return retString;
 
-        // 2.
-        //s = "obj.run()";
-        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-        //System.out.println(Context.toString(result));
-
-        // 3.
-        //s = "r = new java.lang.Runnable(obj);";
-        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-        //System.out.println(Context.toString(result));
-
-        // 4.
-        //s = "t = new java.lang.Thread(r);";
-        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-        //System.out.println(Context.toString(result));
-
-        //s = "t.start()";
-        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-        //return org.mozilla.javascript.Context.toString(result);
     }
 
-    //private class InteractionAdapter extends BaseAdapter {
+    private class RhinoInteractionAdapter extends BaseAdapter {
+        // Must have this when constructing or inflating adapter element views
+        private android.content.Context context;
 
-    /** Must have this when constructing or inflating views */
-    //private Context context;
+        private Vector<RhinoInteraction> rhinoInteractions;
 
-    /** The statuses */
-    //private Vector<Interaction> interactions;
+        public RhinoInteractionAdapter(android.content.Context context, Vector<RhinoInteraction> ri) {
+            this.context = context;
+            rhinoInteractions = ri;
+        }
 
-    //public InteractionAdapter(Context context) {
-    //this.context = context;
-    //}
+        //public void DI(Vector<Interaction> s) {
+            //interactions = s;
+        //}
+
+        public int getCount() {
+            return rhinoInteractions.size();
+        }
+
+        public Object getItem(int position) {
+            return rhinoInteractions.get(position);
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            RhinoInteraction interaction = (RhinoInteraction) rhinoInteractions.elementAt(position);
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
+            View v = inflater.inflate(R.layout.interaction_tile, null);
+
+            if (interaction.fRhinoSpeaks)
+                v.setBackgroundResource(R.color.green_lite_m);
+            else
+                v.setBackgroundResource(R.color.green_lite_p);
+
+            TextView tv = (TextView) v.findViewById(R.id.lblRhinoInteraction);
+            tv.setText(interaction.theText);
+
+            return v;
+
+        }
+    }
 }

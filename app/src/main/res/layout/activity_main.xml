@@ -9,10 +9,10 @@
 
 	<ListView
 		android:id="@+id/theInteractions"
-		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:transcriptMode="alwaysScroll"
 		android:layout_weight="2"
+		android:layout_width="fill_parent"
+		android:transcriptMode="alwaysScroll"
 	/>
 
 	<EditText
