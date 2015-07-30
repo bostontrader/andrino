@@ -22,6 +22,7 @@ import android.view.View.OnClickListener;
 //import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
@@ -55,8 +56,47 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		Button btnEdit = (Button) this.findViewById(R.id.btnFullScreenEditor);
-		btnEdit.setOnClickListener(
+        final EditText thePrompt = (EditText) findViewById(R.id.thePrompt);
+
+        // 1. Hook the submit button.
+        Button btnSubmit = (Button) this.findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View arg0) {
+                        // When clicked, submit the javascript to rhino.
+						//EditText et = (EditText) this.findViewById(R.id.thePrompt);
+						//String s1 = thePrompt.toString();
+						//String s2 = thePrompt.getText().toString();
+						//thePrompt.getText();
+						//et.setText("");
+						//et.setOnEditorActionListener(
+						//new OnEditorActionListener() {
+					    //@Override
+						//public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+
+						// For whatever reason, each enter triggers this twice.  I only
+						// want to use it once.  This is how I pick only one
+						//if (arg2.getDownTime() == arg2.getEventTime()) {
+						// 1. First, figure out what the newly entered text is
+						//String newLine = arg0.getText().toString();
+						feedRhino(thePrompt.getText().toString());
+						thePrompt.setText("");
+						// 2. Then erase the EditText so we may use it again
+						//arg0.setText("");
+						//}
+						//return true;	// event consumed
+						//}
+						//}
+				    	//);
+                    }
+                }
+        );
+
+        // 2. Hook the full screen editor button.
+		Button btnFullScreenEditor = (Button) this.findViewById(R.id.btnFullScreenEditor);
+        btnFullScreenEditor.setOnClickListener(
             new OnClickListener() {
 
                 @Override
@@ -65,7 +105,6 @@ public class MainActivity extends Activity {
                     // MediaPlayer mp = MediaPlayer.create(Andrino.this, R.raw.tos_computer_3);
                     //mp.start();
 
-                    EditText thePrompt = (EditText) findViewById(R.id.thePrompt);
                     String theText = thePrompt.getText().toString();
                     //thePrompt.setText(""); // blank to reuse
 
@@ -85,6 +124,10 @@ public class MainActivity extends Activity {
 		lvInteractions.setAdapter(ia);*/
 
 		//Context cx = org.mozilla.javascript.Context.enter();
+
+		// Disable optimization lest we get the dreaded
+		// java.lang.UnsupportedOperationException: can't load this type of class file
+        // error.
 		//cx.setOptimizationLevel(-1);
 		//Scriptable scope = cx.initStandardObjects();
 
@@ -99,29 +142,7 @@ public class MainActivity extends Activity {
 		//retString = th.getLocalizedMessage();
 		//}
 
-		/*EditText et = (EditText) this.findViewById(R.id.thePrompt);
-		et.setText("");
-		et.setOnEditorActionListener(
-			new OnEditorActionListener() {
-				//@Override
-				public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
-
-					// For whatever reason, each enter triggers this twice.  I only
-					// want to use it once.  This is how I pick only one
-					if (arg2.getDownTime() == arg2.getEventTime()) {
-						// 1. First, figure out what the newly entered text is
-						String newLine = arg0.getText().toString();
-
-						feedRhino(newLine);
-
-						// 2. Then erase the EditText so we may use it again
-						arg0.setText("");
-
-					}
-					return true;	// event consumed
-				}
-			}
-		);
+		/*
 
 		lvInteractions.setOnItemClickListener(
 			new OnItemClickListener() {
@@ -190,41 +211,42 @@ public class MainActivity extends Activity {
 
 		return false;
 	}*/
+
     // Give a new inputString for rhino, add the string to the UI, call rhino, and then update the UI
     // with rhino's response
-    //private void feedRhino(String inputString) {
+    private void feedRhino(String inputString) {
 
-    //MediaPlayer mp = MediaPlayer.create(this, R.raw.tos_working);
-    //mp.start();
+    	//MediaPlayer mp = MediaPlayer.create(this, R.raw.tos_working);
+    	//mp.start();
 
-    // 1. Enter inputString as an interaction and update the UI
-    //Interaction interaction = new Interaction();
-    //interaction.theText = inputString;
-    //interaction.fRhinoSpeaks = false;
-    //interactions.add(interaction);
-    //runOnUiThread(
-    //new Runnable() {
-    //public void run() {
-    //ia.notifyDataSetChanged();
-    //}
-    //}
-    //);
+    	// 1. Enter inputString as an interaction and update the UI
+    	//Interaction interaction = new Interaction();
+    	//interaction.theText = inputString;
+    	//interaction.fRhinoSpeaks = false;
+    	//interactions.add(interaction);
+    	//runOnUiThread(
+    	//new Runnable() {
+    	//public void run() {
+    	//ia.notifyDataSetChanged();
+    	//}
+    	//}
+    	//);
 
-    // 2. Now call Rhino
-    //String rhinoResult = rhino(inputString);
-    //interaction = new Interaction();
-    //interaction.theText = rhinoResult;
-    //interaction.fRhinoSpeaks = true;
-    //interactions.add(interaction);
-    //runOnUiThread(
-    //new Runnable() {
-    //public void run() {
-    //ia.notifyDataSetChanged();
-    //}
-    //}
-    //);
+	    // 2. Now call Rhino
+    	String rhinoResult = rhino(inputString);
+    	//interaction = new Interaction();
+    	//interaction.theText = rhinoResult;
+    	//interaction.fRhinoSpeaks = true;
+    	//interactions.add(interaction);
+    	//runOnUiThread(
+    	//new Runnable() {
+    	//public void run() {
+    	//ia.notifyDataSetChanged();
+    	//}
+    	//}
+    	//);
 
-    //}
+    }
 
     //public void onActivityResult(int requestCode, int resultCode, Intent data) {
     //switch (requestCode) {
@@ -242,39 +264,46 @@ public class MainActivity extends Activity {
     //feedRhino(returnedText);
     //}
 
-    //private String rhino(String newline) {
+    private String rhino(String newline) {
 
-    //Object result;
-    //String retString = "";
-    //try {
-    //result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
-    //retString = result.toString();
-    //}
-    //catch(Throwable th) {
-    //retString = th.getLocalizedMessage();
-    //}
 
-    //return retString;
+        Context cx = org.mozilla.javascript.Context.enter();
 
-    // 2.
-    //s = "obj.run()";
-    //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-    //System.out.println(Context.toString(result));
+        // Disable optimization lest we get the dreaded
+        // java.lang.UnsupportedOperationException: can't load this type of class file
+        // error.
+        cx.setOptimizationLevel(-1);
+        Scriptable scope = cx.initStandardObjects();
 
-    // 3.
-    //s = "r = new java.lang.Runnable(obj);";
-    //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-    //System.out.println(Context.toString(result));
+        Object result;
+        String retString;
+        try {
+            result = cx.evaluateString(scope, newline, "<cmd>", 1, null);
+            retString = result.toString();
+        } catch(Throwable th) {
+            retString = th.getLocalizedMessage();
+        }
+        return retString;
 
-    // 4.
-    //s = "t = new java.lang.Thread(r);";
-    //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-    //System.out.println(Context.toString(result));
+        // 2.
+        //s = "obj.run()";
+        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
+        //System.out.println(Context.toString(result));
 
-    //s = "t.start()";
-    //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
-    //return org.mozilla.javascript.Context.toString(result);
-    //}
+        // 3.
+        //s = "r = new java.lang.Runnable(obj);";
+        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
+        //System.out.println(Context.toString(result));
+
+        // 4.
+        //s = "t = new java.lang.Thread(r);";
+        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
+        //System.out.println(Context.toString(result));
+
+        //s = "t.start()";
+        //result = cx.evaluateString(scope, s, "<cmd>", 1, null);
+        //return org.mozilla.javascript.Context.toString(result);
+    }
 
     //private class InteractionAdapter extends BaseAdapter {
 
