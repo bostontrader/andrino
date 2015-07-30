@@ -2,21 +2,26 @@
 
 <resources>
 
-	<!-- Alpha by name -->
+    <!-- Functional, alpha by name -->
+    <string name="myemail">bostontrader@gmail.com</string>
+    <string name="url">https://github.com/bostontrader/andrino</string>
+
+	<!-- Ordinary words, alpha by name -->
     <string name="about">about</string>
     <string name="andrino">andrino</string>
+    <string name="body_of_email">body of email</string>
     <string name="enter">enter</string>
 	<string name="enter_javascript">enter javascript</string>
     <string name="full_screen_editor">full screen editor</string>
+    <string name="regarding_andrino">regarding andrino</string>
+    <string name="send_email">send email</string>
     <string name="settings">settings</string>
 	<string name="submit">submit</string>
+    <string name="text_plain">text/plain</string>
+    <string name="there_are_no_email_clients_installed">there are no email clients installed</string>
 
 	<!-- Strings for testing, alpha by name -->
-	<string name="one_plus_two">1+2</string>
-
-	<!--
-        <string name="fyrecloud.com">fyrecloud.com/andrino</string>
-        <string name="send_email">Send Email</string>
-        -->
+    <string name="one_plus_two">1+2</string>
+    <string name="three_p_zero">3.0</string>
 
 </resources>

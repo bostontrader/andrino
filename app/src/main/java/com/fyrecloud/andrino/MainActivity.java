@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         );
 
- 		lvRhinoInteractions = (ListView) findViewById(R.id.theInteractions);
+ 		lvRhinoInteractions = (ListView) findViewById(R.id.rhinoInteractions);
         rhinoInteractions = new Vector<>();
 		ria = new RhinoInteractionAdapter(this, rhinoInteractions);
 		lvRhinoInteractions.setAdapter(ria);
@@ -150,20 +151,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-	/*@Override
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch(item.getItemId()) {
 
-			case R.id.about:
+			case R.id.action_about:
 				startActivity(new Intent(this, About.class));
 				return true;
-
 
 		}
 
 		return false;
-	}*/
+	}
 
     // Give a new inputString for rhino, add the string to the UI, call rhino, and then update the UI
     // with rhino's response
@@ -271,14 +271,14 @@ public class MainActivity extends AppCompatActivity {
 
             RhinoInteraction interaction = rhinoInteractions.elementAt(position);
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
-            View v = inflater.inflate(R.layout.interaction_tile, null);
+            View v = inflater.inflate(R.layout.rhino_interaction_tile, null);
 
             if (interaction.fRhinoSpeaks)
                 v.setBackgroundResource(R.color.green_lite_m);
             else
                 v.setBackgroundResource(R.color.green_lite_p);
 
-            TextView tv = (TextView) v.findViewById(R.id.lblRhinoInteraction);
+            TextView tv = (TextView) v.findViewById(R.id.rhinoInteraction);
             tv.setText(interaction.theText);
 
             return v;
