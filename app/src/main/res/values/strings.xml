@@ -3,6 +3,7 @@
 <resources>
 
 	<!-- Alpha by name -->
+    <string name="about">about</string>
     <string name="andrino">andrino</string>
     <string name="enter">enter</string>
 	<string name="enter_javascript">enter javascript</string>
@@ -14,7 +15,6 @@
 	<string name="one_plus_two">1+2</string>
 
 	<!--
-        <string name="about">About</string>
         <string name="fyrecloud.com">fyrecloud.com/andrino</string>
         <string name="send_email">Send Email</string>
         -->

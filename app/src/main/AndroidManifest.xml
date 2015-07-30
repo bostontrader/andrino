@@ -6,10 +6,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/andrino"
-        >
+    >
         <activity
             android:name=".MainActivity"
-            android:label="@string/andrino" >
+            android:label="@string/andrino"
+            android:theme="@style/Theme.AppCompat.Light"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

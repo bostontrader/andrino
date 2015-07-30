@@ -1,9 +1,11 @@
 package com.fyrecloud.andrino;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -13,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-//import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
 import java.util.Vector;
@@ -23,9 +24,8 @@ import java.util.Vector;
  *
  * @author Thomas Radloff  bostontrader@gmail.com
  */
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-    private ListView lvRhinoInteractions;
     private Vector<RhinoInteraction> rhinoInteractions;
     private RhinoInteractionAdapter ria;
 
@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final EditText thePrompt = (EditText) findViewById(R.id.thePrompt);
+        ListView lvRhinoInteractions;
 
         // 1. Hook the submit button.
         Button btnSubmit = (Button) this.findViewById(R.id.btnSubmit);
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
         );
 
  		lvRhinoInteractions = (ListView) findViewById(R.id.theInteractions);
-        rhinoInteractions = new Vector<RhinoInteraction>();
+        rhinoInteractions = new Vector<>();
 		ria = new RhinoInteractionAdapter(this, rhinoInteractions);
 		lvRhinoInteractions.setAdapter(ria);
 
@@ -134,15 +135,22 @@ public class MainActivity extends Activity {
     //protected void onSaveInstanceState (Bundle outState) {
     //}
 
-    // The menu only goes into ShowOrders
     //@Override
-	/*public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu, menu);
-		return true;
-	}
+	//public boolean onCreateOptionsMenu(Menu menu) {
+		//MenuInflater inflater = getMenuInflater();
+		//inflater.inflate(R.menu.menu, menu);
+		//return true;
+	//}
 
-	//@Override
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+	/*@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch(item.getItemId()) {
@@ -261,7 +269,7 @@ public class MainActivity extends Activity {
 
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            RhinoInteraction interaction = (RhinoInteraction) rhinoInteractions.elementAt(position);
+            RhinoInteraction interaction = rhinoInteractions.elementAt(position);
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
             View v = inflater.inflate(R.layout.interaction_tile, null);
 
