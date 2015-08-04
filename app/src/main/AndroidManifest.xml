@@ -8,7 +8,7 @@
         android:label="@string/andrino"
     >
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/andrino"
             android:theme="@style/Theme.AppCompat.Light"
         >
@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".About"></activity>
-        <activity android:name=".Editor"></activity>
+        <activity android:name=".activities.About"></activity>
+        <activity android:name=".activities.Editor"></activity>
     </application>
 
 </manifest>

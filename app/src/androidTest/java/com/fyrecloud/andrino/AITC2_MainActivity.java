@@ -15,6 +15,8 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 
 import static org.hamcrest.Matchers.allOf;
 
+import com.fyrecloud.andrino.activities.MainActivity;
+
 public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public AITC2_MainActivity() {

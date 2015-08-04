@@ -1,4 +1,4 @@
-package com.fyrecloud.andrino;
+package com.fyrecloud.andrino.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.fyrecloud.andrino.R;
+import com.fyrecloud.andrino.RhinoInteraction;
 
 import org.mozilla.javascript.Scriptable;
 
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     //thePrompt.setText(""); // blank to reuse
 
                     Intent myIntent = new Intent();
-                    myIntent.setClassName("com.fyrecloud.andrino", "com.fyrecloud.andrino.Editor");
+                    myIntent.setClassName("com.fyrecloud.andrino", "com.fyrecloud.andrino.activities.Editor");
                     //myIntent.setAction(Intent.ACTION_MAIN);
                     myIntent.putExtra("com.fyrecloud.andrino.theText",theText);
                     startActivityForResult(myIntent,0);
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 					//editDialog.show();
 
 					Intent myIntent = new Intent();
-					myIntent.setClassName("com.fyrecloud.andrino", "com.fyrecloud.andrino.Editor");
+					myIntent.setClassName("com.fyrecloud.andrino", "com.fyrecloud.andrino.activities.Editor");
 					myIntent.setAction(Intent.ACTION_MAIN);
 					myIntent.putExtra("com.fyrecloud.andrino.theText",interaction.theText);
 					startActivityForResult(myIntent,0);

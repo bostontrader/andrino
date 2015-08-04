@@ -5,12 +5,6 @@ import org.mozilla.javascript.Scriptable;
 
 public class RhinoTest extends TestCase {
 
-    //public void setUp() throws Exception {
-        //super.setUp();
-    //}
-
-    //public void tearDown() throws Exception {    }
-
     public void testRhino() {
         Context cx = org.mozilla.javascript.Context.enter();
         Scriptable scope = cx.initStandardObjects();

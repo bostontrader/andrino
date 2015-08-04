@@ -1,4 +1,4 @@
-package com.fyrecloud.andrino;
+package com.fyrecloud.andrino.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.fyrecloud.andrino.R;
 
 /**
  * This Activity is the large text editor to enable convenient editing of
