@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.fyrecloud.andrino.R;
@@ -23,7 +22,7 @@ public class About extends Activity {
 		setContentView(R.layout.about);
 
 		// 1. Hook the URL button
-		((Button) findViewById(R.id.btnURL)).setOnClickListener(
+		findViewById(R.id.btnURL).setOnClickListener(
 			new View.OnClickListener() {
 				public void onClick(View view){
 					String url = About.this.getString(R.string.url);
@@ -37,7 +36,7 @@ public class About extends Activity {
 		);
 
 		// 2. Hook the send email button
-		((Button)findViewById(R.id.btnSendEmail)).setOnClickListener(
+		findViewById(R.id.btnSendEmail).setOnClickListener(
 			new View.OnClickListener() {
 				public void onClick(View view){
 					Intent i = new Intent(Intent.ACTION_SEND);
