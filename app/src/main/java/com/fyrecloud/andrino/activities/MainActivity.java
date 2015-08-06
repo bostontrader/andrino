@@ -117,12 +117,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //@Override
-    //protected void onStart() {super.onStart();}
+    protected void onStart() {
+        super.onStart();
+    }
 
     //@Override
-    //protected void onResume() {super.onResume();
-    //this.invalidateView();
-    //}
+    protected void onResume() {
+        super.onResume();
+        //this.invalidateView();
+    }
 
     //@Override
     //protected void onPause() {super.onPause();}

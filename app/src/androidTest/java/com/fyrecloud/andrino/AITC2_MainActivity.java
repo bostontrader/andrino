@@ -1,6 +1,5 @@
 package com.fyrecloud.andrino;
 
-import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -17,6 +16,10 @@ import static org.hamcrest.Matchers.allOf;
 
 import com.fyrecloud.andrino.activities.MainActivity;
 
+/**
+ *  @author Thomas Radloff  bostontrader@gmail.com
+ */
+
 public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public AITC2_MainActivity() {
@@ -26,13 +29,10 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        getActivity(); // Start the activity, but we don't need a reference to it.
     }
 
-    public void test() {
-
-        Activity activity = getActivity();
-
-        // 1. Initial peek.  Are the UI controls there?
+    public void testPreconditions() {
 
         // 1.1 Action Bar
         // can I see the andrino icon in the action bar?
@@ -47,24 +47,20 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
         onView(withId(R.id.btnSubmit)).check(matches(withText(R.string.submit)));
         onView(withId(R.id.btnFullScreenEditor)).check(matches(isDisplayed()));
         onView(withId(R.id.btnFullScreenEditor)).check(matches(withText(R.string.full_screen_editor)));
+    }
 
-        // 2. Can we navigate to the about screen?
+    // Can we navigate to the about screen and then navigate back?
+    // See AUTC_About for more testing of that Activity.
+    public void testNavigateToAboutScreen() {
         onView(withId(R.id.action_about)).perform(click());
-        // Can I see the andrino icon?
-        onView(withId(R.id.btnURL)).check(matches(isDisplayed()));
-        onView(withId(R.id.btnSendEmail)).check(matches(isDisplayed()));
-        // What happens when I click fyrecloud?
-        // What happens when I click "send email"
-
-        // 2.1 Now navigate back to MainActivity
         pressBack();
+        // How to check which activity now?
+    }
 
-        // 3. Back to MainActivity.
-        // How to check which activity now?  Don't bother.
-        // If not correct, then the test will quickly fail.        //
-        // Now enter a small bit o' code and click submit.  Do we get
-        // a sensible result?
-        onView(withId(R.id.thePrompt)).perform(typeText(activity.getString(R.string.one_plus_two)));
+    // Now enter a small bit o' code and click submit.  Do we get
+    // a sensible result?
+    public void testEnterSomeJavascript() {
+        onView(withId(R.id.thePrompt)).perform(typeText(getActivity().getString(R.string.one_plus_two)));
         onView(withId(R.id.btnSubmit)).perform(click());
         onView(allOf(withId(R.id.rhinoInteraction), withText(R.string.one_plus_two)));
         onView(allOf(withId(R.id.rhinoInteraction), withText(R.string.three_p_zero)));
