@@ -1,5 +1,6 @@
 package com.fyrecloud.andrino;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,32 +10,20 @@ import android.widget.Button;
 
 import com.fyrecloud.andrino.activities.About;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ *  @author Thomas Radloff  bostontrader@gmail.com
+ */
 import java.util.Set;
 
-// Test the functionality of the buttons.  Based on (3) and (4).
-//
-// The buttons of this activity should create intents that will ultimately
-// be used to launch other activities.  We cannot directly follow this flow
-// but we can verify that intents are created, as well as their content.
-//
-// Each test method has a call to startActivity.
-// We cannot factor out startActivity from the test methods
-// into setUp because the docs (1) tell us not to, and because doing so
-// simply doesn't work.  We also need to annotate our test methods
-// with @UiThreadTest or startActivity will fail.
-//
-// Apparently this has something to do with which thread setUp and test
-// methods use (2).
-//
-// (1) http://developer.android.com/reference/android/test/ActivityUnitTestCase.html#startActivity%28android.content.Intent,%20android.os.Bundle,%20java.lang.Object%29
-// (2) http://stackoverflow.com/questions/4297458/activityunittestcase-and-startactivity
-// (3) http://developer.android.com/training/activity-testing/activity-unit-testing.html
-// (4) http://developer.android.com/reference/android/test/ActivityUnitTestCase.html
-
-public class AUTC_About extends ActivityUnitTestCase<About> {
+public class AUTC_About extends AUTC_Shim<About> {
 
     public AUTC_About() {super(About.class);}
 

@@ -10,6 +10,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+/**
+ *  @author Thomas Radloff  bostontrader@gmail.com
+ */
+
 public class AITC2_About extends ActivityInstrumentationTestCase2<About> {
 
     public AITC2_About() {
