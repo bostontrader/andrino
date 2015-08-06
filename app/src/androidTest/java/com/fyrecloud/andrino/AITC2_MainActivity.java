@@ -57,6 +57,14 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
         // How to check which activity now?
     }
 
+    // Can we navigate to the about screen and then navigate back?
+    // See AUTC_About for more testing of that Activity.
+    public void testNavigateToSettingsActivity() {
+        onView(withId(R.id.action_settings)).perform(click());
+        pressBack();
+        // How to check which activity now?
+    }
+
     // Now enter a small bit o' code and click submit.  Do we get
     // a sensible result?
     public void testEnterSomeJavascript() {

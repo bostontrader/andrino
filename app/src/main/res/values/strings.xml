@@ -20,7 +20,12 @@
     <string name="text_plain">text/plain</string>
     <string name="there_are_no_email_clients_installed">there are no email clients installed</string>
 
-	<!-- Strings for testing, alpha by name -->
+    <!-- preferences -->
+    <string name="SOUND_FX_KEY">soundfx</string>
+    <string name="SOUND_FX_TITLE">sound effects</string>
+    <string name="SOUND_FX_DEFAULT">false</string>
+
+    <!-- Strings for testing, alpha by name -->
     <string name="one_plus_two">1+2</string>
     <string name="three_p_zero">3.0</string>
 

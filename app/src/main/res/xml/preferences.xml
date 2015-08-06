@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="@string/SOUND_FX_KEY"
+        android:title="@string/SOUND_FX_TITLE"
+        android:defaultValue="@string/SOUND_FX_DEFAULT"
+        />
+
+</PreferenceScreen>

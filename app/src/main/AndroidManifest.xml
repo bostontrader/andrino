@@ -20,6 +20,7 @@
 
         <activity android:name=".activities.About"></activity>
         <activity android:name=".activities.Editor"></activity>
+        <activity android:name=".activities.SettingsActivity"></activity>
     </application>
 
 </manifest>

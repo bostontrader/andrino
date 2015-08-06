@@ -2,6 +2,7 @@ package com.fyrecloud.andrino.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         final EditText thePrompt = (EditText) findViewById(R.id.thePrompt);
         ListView lvRhinoInteractions;
@@ -166,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
 				startActivity(new Intent(this, About.class));
 				return true;
 
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
 		}
 
 		return false;
