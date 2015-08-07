@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.fyrecloud.andrino.AndrinoApplication;
 import com.fyrecloud.andrino.R;
 import com.fyrecloud.andrino.RhinoInteraction;
 
@@ -32,14 +33,9 @@ import java.util.Vector;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private AndrinoApplication theApplication;
     private Vector<RhinoInteraction> rhinoInteractions;
     private RhinoInteractionAdapter ria;
-
-    // We need these for Rhino
-    //private org.mozilla.javascript.Context cx;
-    //private Scriptable scope;
-    //private String source;
-    //private String lineno;
 
     // A new java expression instead of an additional line
     //private boolean fNewJava = true;
@@ -48,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        theApplication = (AndrinoApplication) getApplication();
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -146,13 +144,6 @@ public class MainActivity extends AppCompatActivity {
     //protected void onSaveInstanceState (Bundle outState) {
     //}
 
-    //@Override
-	//public boolean onCreateOptionsMenu(Menu menu) {
-		//MenuInflater inflater = getMenuInflater();
-		//inflater.inflate(R.menu.menu, menu);
-		//return true;
-	//}
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -239,8 +230,7 @@ public class MainActivity extends AppCompatActivity {
         // java.lang.UnsupportedOperationException: can't load this type of class file
         // error.
         cx.setOptimizationLevel(-1);
-        Scriptable scope = cx.initStandardObjects();
-
+        Scriptable scope = theApplication.getScope(cx);
         Object result;
         String retString;
         try {

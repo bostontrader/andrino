@@ -6,6 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ajs_icon"
         android:label="@string/andrino"
+        android:name="com.fyrecloud.andrino.AndrinoApplication"
     >
         <activity
             android:name=".activities.MainActivity"
