@@ -1,6 +1,7 @@
 package com.fyrecloud.andrino.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -75,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View arg0) {
 
-                    // MediaPlayer mp = MediaPlayer.create(Andrino.this, R.raw.tos_computer_3);
-                    //mp.start();
+                    MediaPlayer mp = MediaPlayer.create(MainActivity.this, R.raw.tos_computer_3);
+                    mp.start();
 
                     String theText = thePrompt.getText().toString();
                     //thePrompt.setText(""); // blank to reuse
