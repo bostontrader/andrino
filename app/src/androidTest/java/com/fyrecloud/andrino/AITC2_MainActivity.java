@@ -74,4 +74,24 @@ public class AITC2_MainActivity extends ActivityInstrumentationTestCase2<MainAct
         onView(allOf(withId(R.id.rhinoInteraction), withText(R.string.three_p_zero)));
     }
 
+    // Do some Javascript, destroy and restart the activity.
+    // The Rhino object should survive these gyrations.
+    public void testPreserveRhinoState() {
+        onView(withId(R.id.thePrompt)).perform(typeText("a=5"));
+        onView(withId(R.id.btnSubmit)).perform(click());
+
+        // Close the activity
+        getActivity().finish();
+        setActivity(null);  // Required to force creation of a new activity
+
+        // Relaunch the activity
+        getActivity();
+
+        // Now enter an expression that will depend upon the prior
+        // state of Rhino.
+        onView(withId(R.id.thePrompt)).perform(typeText("b=a"));
+        onView(withId(R.id.btnSubmit)).perform(click());
+
+        onView(allOf(withId(R.id.rhinoInteraction), withText("5")));
+    }
 }
