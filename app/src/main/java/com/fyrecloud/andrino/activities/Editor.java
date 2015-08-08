@@ -14,7 +14,7 @@ import com.fyrecloud.andrino.R;
  * This Activity is the large text editor to enable convenient editing of
  * larger expressions.
  *
- * @author Thomas Radloff  radloff@fyrecloud  http://fyrecloud.com/amsler
+ * @author Thomas Radloff  bostontrader@gmail.com
  */
 public class Editor extends Activity {
 
@@ -28,42 +28,20 @@ public class Editor extends Activity {
 		String incomingText = incomingIntent.getStringExtra("com.fyrecloud.andrino.theText");
 		theText.setText(incomingText);
 
-		// This is labeled "Submit" on the UI
-		//Button btnSubmit = (Button) this.findViewById(R.id.btnSave);
-		//btnSubmit.setOnClickListener(
-			//new OnClickListener() {
-				//public void onClick(View arg0) {
-					//EditText theText = (EditText) findViewById(R.id.theText);
-					//Bundle b = new Bundle();
-					//b.putString("com.fyrecloud.andrino.theText", theText.getText().toString());
-					//Intent myIntent = new Intent();
-					//myIntent.putExtras(b);
-					//setResult(RESULT_OK, myIntent);
-					//finish();
-				//}
-			//}
-		//);
-
+		Button btnSubmit = (Button) this.findViewById(R.id.btnSubmit);
+		btnSubmit.setOnClickListener(
+			new OnClickListener() {
+				public void onClick(View arg0) {
+					EditText theText = (EditText) findViewById(R.id.theText);
+					Bundle b = new Bundle();
+					b.putString("com.fyrecloud.andrino.theText", theText.getText().toString());
+					Intent myIntent = new Intent();
+					myIntent.putExtras(b);
+					setResult(RESULT_OK, myIntent);
+					finish();
+				}
+			}
+		);
 	}
-
-	//@Override
-	//protected void onStart() {super.onStart();}
-
-	//@Override
-	//protected void onResume() {super.onResume();
-		//this.invalidateView();
-	//}
-
-	//@Override
-	//protected void onPause() {super.onPause();}
-
-	//@Override
-	//protected void onStop() {super.onStop();}
-
-	//@Override
-	//protected void onDestroy() {super.onDestroy();}
-
-	//@Override
-	//protected void onRestart() {super.onRestart();}*/
 
 }

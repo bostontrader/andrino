@@ -129,21 +129,6 @@ public class MainActivity extends AppCompatActivity {
         //this.invalidateView();
     }
 
-    //@Override
-    //protected void onPause() {super.onPause();}
-
-    //@Override
-    //protected void onStop() {super.onStop();}
-
-    //@Override
-    //protected void onDestroy() {super.onDestroy();}
-
-    //@Override
-    //protected void onRestart() {super.onRestart();}
-
-    //protected void onSaveInstanceState (Bundle outState) {
-    //}
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -205,21 +190,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    //switch (requestCode) {
-    //case RESULT_ENABLE:
-    //if (resultCode == Activity.RESULT_OK) {
-    //Log.i("DeviceAdminSample", "Admin enabled!");
-    //} else {
-    //Log.i("DeviceAdminSample", "Admin enable FAILED!");
-    //}
-    //return;
-    //}
-    //super.onActivityResult(requestCode, resultCode, data);
-    //if (data == null) return;
-    //String returnedText = data.getStringExtra("com.fyrecloud.andrino.theText");
-    //feedRhino(returnedText);
-    //}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //switch (requestCode) {
+        //case RESULT_ENABLE:
+        //if (resultCode == Activity.RESULT_OK) {
+        //Log.i("DeviceAdminSample", "Admin enabled!");
+        //} else {
+        //Log.i("DeviceAdminSample", "Admin enable FAILED!");
+        //}
+        //return;
+        //}
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) return;
+        String returnedText = data.getStringExtra("com.fyrecloud.andrino.theText");
+        feedRhino(returnedText);
+    }
 
     private String rhino(String newline) {
 
